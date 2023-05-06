@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.empty.demo.mapper.GoodsMapper">
+    <update id="Update">
+        UPDATE goods
+        <set>
+            <if test="goodName != null and goodName != ''">goodName = #{goodName},</if>
+            <if test="manufacturer != null and manufacturer != ''">manufacturer = #{manufacturer},</if>
+            <if test="price != null and price != '' ">price = #{price},</if>
+            <if test="type != null and type != ''">type = #{type},</if>
+            <if test="typedescription != null and typedescription != ''">typedescription = #{typedescription},</if>
+        </set>
+        where goodId = #{goodId}
+    </update>
+    <select id="SelectAlllGoods" resultType="com.empty.demo.pojo.Goods">
+        SELECT * FROM goods
+        <where>
+            <if test="goodId != null ">
+                goodId= #{goodId}
+            </if>
+
+        </where>
+    </select>
+
+</mapper>
